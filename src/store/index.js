@@ -6,7 +6,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
-} from "firebase/firestore";
+} from "firebase/firestore"; //firebase methods
 
 export default createStore({
   state: {

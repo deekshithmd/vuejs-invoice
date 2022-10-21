@@ -135,18 +135,22 @@ export default {
       this.SET_CURRENT_INVOICE(this.$route.params.invoiceId);
       this.currentInvoice = this.currentInvoiceArray[0];
     },
+
     toggleEditInvoice() {
       this.TOGGLE_EDIT_INVOICE();
       this.TOGGLE_INVOICE();
     },
+
     async deleteInvoice(docId) {
       await this.DELETE_INVOICE(docId);
       // this.$router.push({ name: "HOME" });
       this.$router.push("/");
     },
+
     updateStatusToPaid(docId) {
       this.UPDATE_STATUS_TO_PAID(docId);
     },
+
     updateStatusToPending(docId) {
       this.UPDATE_STATUS_TO_PENDING(docId);
     },
@@ -155,6 +159,7 @@ export default {
     ...mapState(["currentInvoiceArray", "editInvoice"]),
   },
   watch: {
+    // for live update invoice
     editInvoice() {
       if (!this.editInvoice) {
         this.currentInvoice = this.currentInvoiceArray[0];

@@ -272,18 +272,23 @@ export default {
   },
   methods: {
     ...mapMutations(["TOGGLE_INVOICE", "TOGGLE_MODAL", "TOGGLE_EDIT_INVOICE"]),
-    ...mapActions(["UPDATE_INVOICE","GET_INVOICES"]),
+
+    ...mapActions(["UPDATE_INVOICE", "GET_INVOICES"]),
+    // To check screen click
     checkClick(e) {
       if (e.target === this.$refs.invoiceWrap) {
         this.TOGGLE_MODAL();
       }
     },
+
+    // To toggle invoice modal
     closeInvoice() {
       this.TOGGLE_INVOICE();
       if (this.editInvoice) {
         this.TOGGLE_EDIT_INVOICE();
       }
     },
+
     addNewInvoiceItem() {
       this.invoiceItemList.push({
         id: uid(),
@@ -293,23 +298,28 @@ export default {
         total: 0,
       });
     },
+
     deleteInvoiceItem(id) {
       this.invoiceItemList = this.invoiceItemList.filter(
         (item) => item.id !== id
       );
     },
+
     saveDraft() {
       this.invoiceDraft = true;
     },
+
     calcInvoicetTotal() {
       this.invoiceTotal = 0;
       this.invoiceItemList.forEach((item) => {
         this.invoiceTotal += item.total;
       });
     },
+
     publishInvoice() {
       this.invoicePending = true;
     },
+
     async uploadInvoice() {
       if (this.invoiceItemList.length <= 0) {
         alert("Please ensure you filled out work items!");
@@ -394,6 +404,8 @@ export default {
 
       this.UPDATE_INVOICE(data);
     },
+
+    // On submitting form
     submitForm() {
       if (!this.editInvoice) {
         this.uploadInvoice();
@@ -404,6 +416,7 @@ export default {
     },
   },
   watch: {
+    // To update due dates
     paymentTerms() {
       const futureDate = new Date();
       this.paymentDueDateUnix = futureDate.setDate(

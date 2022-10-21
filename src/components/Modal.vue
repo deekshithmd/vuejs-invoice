@@ -16,9 +16,11 @@ export default {
   name: "Modal",
   methods: {
     ...mapMutations(["TOGGLE_MODAL", "TOGGLE_INVOICE", "TOGGLE_EDIT_INVOICE"]),
+
     closeModal() {
       this.TOGGLE_MODAL();
     },
+    
     closeInvoice() {
       this.TOGGLE_MODAL();
       this.TOGGLE_INVOICE();

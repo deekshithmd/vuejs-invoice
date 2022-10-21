@@ -60,9 +60,11 @@ export default {
   components: { Invoice },
   methods: {
     ...mapMutations(["TOGGLE_INVOICE"]),
+
     newInvoice() {
       this.TOGGLE_INVOICE();
     },
+
     toggleFilterMenu() {
       this.filterMenu = !this.filterMenu;
     },
@@ -77,6 +79,7 @@ export default {
   computed: {
     ...mapState(["invoiceData"]),
 
+    // Filter invoices
     filteredData() {
       return this.invoiceData.filter((invoice) => {
         if (this.filteredInvoice === "Draft") {
